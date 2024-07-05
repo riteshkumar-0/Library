@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Book",
+        "title": "qwertyuiiopp",
+        "category": "Free",
+        "image": "/Users/riteshkumar/Desktop/bookStoreApp-main/Frontend/public/signup.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Book2",
+        "title": "qwertyuiiopp",
+        "category": "Free",
+        "image": "/Users/riteshkumar/Desktop/bookStoreApp-main/Frontend/public/signup.jpeg"
+    }
+]
