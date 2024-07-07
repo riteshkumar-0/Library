@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Demo from "../components/Demo";
 import Footer from "../components/Footer";
-function Courses() {
+function Demos() {
   return (
     <>
       <Navbar />
@@ -14,4 +14,4 @@ function Courses() {
   );
 }
 
-export default Courses;
+export default Demos;

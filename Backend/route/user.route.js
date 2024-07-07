@@ -4,5 +4,10 @@ const router = express.Router();
 
 router.post("/signup", signup);
 router.post("/login", login);
+router.get("/", (req,res)=>{
+    req.render("home",{
+        user: req.user
+    })
+})
 
 export default router;
