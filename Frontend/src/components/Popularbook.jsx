@@ -7,14 +7,14 @@ import Slider from "react-slick";
 import axios from "axios";
 
 import Cards from "./Cards";
-function Freebook() {
+function Popularbook() {
   const [book, setBook] = useState([]);
   useEffect(() => {
     const getBook = async () => {
       try {
         const res = await axios.get("http://localhost:1001/book");
 
-        const data = res.data.filter((data) => data.category === "Free");
+        const data = res.data.filter((data) => data.Type === "popular");
         console.log(data);
         setBook(data);
       } catch (error) {
@@ -60,7 +60,7 @@ function Freebook() {
   };
   return (
     <>
-      <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4">
+      <div className=" max-w-screen-xl container mx-auto mt-20 md:px-20 px-4">
         <div>
           <h1 className="font-semibold text-2xl pb-2 underline">
             {" "}
@@ -73,7 +73,7 @@ function Freebook() {
           </p>
         </div>
 
-        <div>
+        <div className="">
           <Slider {...settings}>
             {book.map((item) => (
               <Cards item={item} key={item.id} />
@@ -84,4 +84,4 @@ function Freebook() {
     </>
   );
 }
-export default Freebook;
+export default Popularbook;

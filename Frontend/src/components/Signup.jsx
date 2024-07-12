@@ -43,9 +43,9 @@ function Signup() {
 
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-screen items-center justify-center sm:items-center ">
         <div className="w-auto">
-          <div className="modal-box m-auto">
+          <div className="modal-box  bg-slate-400 m-auto">
             <form onSubmit={handleSubmit(onSubmit)} method="dialog">
               <Link
                 to="/"
@@ -54,17 +54,17 @@ function Signup() {
                 ✕
               </Link>
 
-              <div className=" m-auto md:order-2 w-full md:w-1/4 h-1/25 items-center">
+              <div className=" m-auto mt-4 w-2/4 md:order-2 md:w-2/4 md:m-auto  md: h-1/25 items-center">
                 <img
                   src={logo}
                   className="md:w-[200px] md:h-[100px] "
                   alt="Logo"
                 />
               </div>
-              <div className="m-auto md:order-1 w-full  py-1 items-center text-red-950 font-bold text-lg">
+              <div className="m-auto mt-5 md:order-1 w-full  py-1 items-center text-red-950 font-bold text-lg">
                 Create a New Account
               </div>
-              <div className="flex mt-4">
+              <div className="flex mt-2 ">
                 <div className="space-y-4 text-orange-950 flex-grow">
                   <div>
                     <span>Name</span>

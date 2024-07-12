@@ -7,7 +7,9 @@ import { useAuth } from "../context/AuthProvider";
 import Logo from "../../public/logo.png";
 import axios from "axios"
 
+
 function Navbar() {
+ 
   const [authUser, setAuthUser] = useAuth();
   console.log(authUser)
   const [theme, setTheme] = useState(
@@ -40,19 +42,21 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const navItems = (
     <>
     
-      <li>
+      <li className="underline">
         <a href="/">Home</a>
       </li>
-      <li>
+      <li className="underline">
         <a href="/book">Book</a>
+        
       </li>
-      <li>
-        <a href="/bookrequest"> Book Request</a>
+      <li className="underline">
+        <a href="/request"> Request</a>
       </li>
-      <li>
+      <li className="underline">
         <a href="/about">About us</a>
       </li>
     </>
@@ -62,13 +66,13 @@ function Navbar() {
       <div
         className={` max-w-screen-2xl container mx-auto md:px-1 px-4 dark:bg-yellow-950 dark:text-white fixed top-0 left-0 right-0 z-50 ${
           sticky
-            ? "sticky-navbar shadow-md bg-base-200 dark:bg-slate-900 dark:text-white duration-300 transition-all ease-in-out"
+            ? "sticky-navbar shadow-md bg-base-200 dark:bg-slate-500 dark:text-white duration-300 transition-all ease-in-out"
             : ""
         }`}
       >
         <div className="navbar ">
           <div className="navbar-start">
-            <div className="dropdown">
+            <div className="dropdown ">
               <div
                 tabIndex={0}
                 role="button"
@@ -91,7 +95,7 @@ function Navbar() {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-2 z-[1] p-2 shadow bg-base-200 rounded-btn w-40"
+                className="dropdown-content menu bg-base-100  dark:bg-slate-900 rounded-box z-[1] w-40 p-2 shadow"
               >
                 {navItems}
               </ul>
@@ -137,14 +141,36 @@ function Navbar() {
                 <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
               </svg>
             </label>
-
+            {authUser ? (
+              <div className="indicator">
+              <span className="indicator-item badge badge-secondary">{}</span>
+              <button className="btn">
+              <svg xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              className="w-8 h-8 opacity-90 "
+               viewBox="0 0 448 512">
+             
+             <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+             </svg>
+              </button>
+            </div>
+            ):(<svg xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              className="w-8 h-8 opacity-90 "
+               viewBox="0 0 448 512">
+             
+             <path d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/>
+             </svg>)
+            }
             {authUser ? (
               <div className="dropdown dropdown-bottom dropdown-end">
-              <div tabIndex={0} role="button" className="btn m-1 rounded-l-full">{authUser.fullname}</div>
-              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-40 p-2 shadow">
-                <li><a>Profile</a></li>
-                <li><a>Add Book</a></li>
-                <li><a> My Order</a></li>
+              <div tabIndex={0} role="button" className="btn m-1 font-semibold bg-orange-300 bg-opacity-50 text-black hover:bg-lime-200 rounded-l-full">{authUser.fullname}</div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100  dark:bg-slate-900 rounded-box z-[1] w-40 p-2 shadow">
+                <li><a href="/profile">Profile</a></li>
+               
+                <li><a> Booklist</a></li>
+                <li><a> BookAvailable</a></li>
+
                 <li><a className="justify-center"><Signout/></a></li>
               </ul>
             </div>

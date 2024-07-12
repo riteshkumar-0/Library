@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 function Signout() {
-  const [authUser, setAuthUser] = useAuth();
+  const [authUser, setAuthUser] = useAuth(); 
+
   const handleLogout = () => {
     try {
       setAuthUser({
@@ -11,23 +12,47 @@ function Signout() {
         user: null,
       });
       localStorage.removeItem("Users");
-      toast.success("Logout successfully");
+      localStorage.removeItem("loginTimestamp");
+      toast.success("SignOut successfully");
 
       setTimeout(() => {
         window.location.reload();
-      }, 3000);
+      }, 2000);
     } catch (error) {
       toast.error("Error: " + error);
-      setTimeout(() => {}, 2000);
+      setTimeout(() => {}, 1000);
     }
   };
+
+  useEffect(() => {
+    const logoutAfterTimeout = () => {
+      const loginTimestamp = localStorage.getItem('loginTimestamp');
+      if (loginTimestamp) {
+        const elapsedTime = Date.now() - parseInt(loginTimestamp, 10);
+        const maxSessionTime = 2 * 60 * 60 * 1000; 
+
+        if (elapsedTime >= maxSessionTime) {
+          handleLogout();
+        } else {
+          setTimeout(handleLogout, maxSessionTime - elapsedTime);
+        }
+      }
+    };
+
+    logoutAfterTimeout();
+
+   
+    return () => clearTimeout(logoutAfterTimeout);
+
+  }, []); 
+
   return (
     <div>
       <button
-        className="px-3 py-2  bg-red-500 text-white rounded-md cursor-pointer"
+        className="px-3 py-2 bg-red-500 text-white rounded-md cursor-pointer"
         onClick={handleLogout}
       >
-       Sign Out
+        Sign Out
       </button>
     </div>
   );

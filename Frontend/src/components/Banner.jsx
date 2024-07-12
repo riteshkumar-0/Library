@@ -31,32 +31,7 @@ function Banner() {
         </div>
       </div>
 
-      <div className="flex justify-center my-10">
-        <label
-          className="px-3 py-2 border rounded-md border-orange-500
-        flex items-center gap-2 w-1/2 max-w-xs"
-        >
-          <input
-            type="text"
-            className="w-full outline-none rounded-md px-1
-             dark:bg-slate-900 dark:text-white
-             "
-            placeholder="Book Name"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            className="w-4 h-4 opacity-90 "
-          >
-            <path
-              fillRule="evenodd"
-              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </label>
-      </div>
+     
     </>
   );
 }
