@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
 
 function Magazine() {
-  const [magazineName, setMagazineName] = useState('');
-  const [publishercompany, setpublishercompany] = useState('');
-  const [category, setCategory] = useState('');
+  const [magazineName, setMagazineName] = useState("");
+  const [publishercompany, setpublishercompany] = useState("");
+  const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
 
-
-  
   return (
     <div className="max-w-60 mx-auto my-40 justify-center  p-4 bg-red-300 dark:bg-slate-900 dark:text-white md:max-w-96">
-       
-      <h2 className="text-lg text-black justify-center flex  font-bold mb-4">Magazine</h2>
+      <h2 className="text-lg text-black justify-center flex  font-bold mb-4">
+        Magazine
+      </h2>
       <form>
         <div className="flex flex-wrap -mx-3 mb-4">
           <div className="w-full md:w-1/2 px-3 mb-4 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-             Mazagine Name
+              Mazagine Name
             </label>
             <input
               type="text"
@@ -33,7 +31,7 @@ function Magazine() {
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-             Publisher Company
+              Publisher Company
             </label>
             <input
               type="text"

@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-function Article() {
-  const [bookName, setBookName] = useState('');
-  const [authorName, setAuthorName] = useState('');
-  const [category, setCategory] = useState('');
-  
+import React, { useState } from "react";
 
-  
+function Article() {
+  const [bookName, setBookName] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [category, setCategory] = useState("");
+
   return (
     <div className="max-w-60 mx-auto my-40 justify-center  p-4 bg-red-300 dark:bg-slate-900 dark:text-white md:max-w-96">
-      <h2 className="text-lg font-bold text-black flex justify-center mb-4">Article</h2>
+      <h2 className="text-lg font-bold text-black flex justify-center mb-4">
+        Article
+      </h2>
       <form>
         <div className="flex flex-wrap -mx-3 mb-4">
-        
           <div className="w-full md:w-1/2 px-3 mb-4 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-             Title
+              Title
             </label>
             <input
               type="text"
@@ -27,7 +26,7 @@ function Article() {
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-             Publisher Name
+              Publisher Name
             </label>
             <input
               type="text"
@@ -52,7 +51,7 @@ function Article() {
             />
           </div>
         </div>
-       
+
         <button
           type="submit"
           className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
