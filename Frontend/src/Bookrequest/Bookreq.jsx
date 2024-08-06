@@ -32,11 +32,11 @@ const BookForm = () => {
   };
 
   return (
-    <div className="max-w-56 mx-auto my-40 p-4  bg-orange-300 dark:bg-slate-900 dark:text-white rounded shadow-md md:max-w-md">
+    <div className="max-w-56 mx-auto my-10  p-4  bg-orange-300 dark:bg-slate-900 dark:text-white rounded shadow-md md:max-w-md">
       <h2 className="text-lg font-bold text-black flex justify-center mb-4">
         Book{" "}
       </h2>
-      <form onSubmit={handleSubmit}>
+      <form className=" w-auto " onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-4">
           <div className="w-full md:w-1/2 px-3 mb-4 md:mb-0">
             <label className=" uppercase tracking-wide flex text-gray-700 text-xs font-bold mb-2">

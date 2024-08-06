@@ -4,21 +4,20 @@ import Home from "./home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Demo from "./Demo/Demo";
 import Signup from "./components/Signup";
-import Login from "./components/Login"
+import Login from "./components/Login";
 
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthProvider";
 import About from "./About/About";
 
 import Contact from "./contact/Contact";
-import Profile from "./Profile/Profile"
-
-import Article from "./Bookrequest/Article"
+import Profile from "./Profile/Profile";
+import Request from "./Bookrequest/request";
+import Article from "./Bookrequest/Article";
 import Magazine from "./Bookrequest/Magazine";
-import Bookreq from "./Bookrequest/Bookreq"
-import Found from "./Search/found"
+import Bookreq from "./Bookrequest/Bookreq";
+import Found from "./Search/found";
 import BookDetail from "./Demo/Bookinformation";
-
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -38,10 +37,10 @@ function App() {
           <Route path="/found" element={<Found />} />
 
           <Route path="/bookrequest" element={<Bookreq />} />
-          
+
           <Route path="/article" element={<Article />} />
           <Route path="/about" element={<About />} />
-
+          <Route path="/request" element={<Request />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/book" element={<Demo />} />
           <Route path="/signup" element={<Signup />} />
@@ -49,7 +48,6 @@ function App() {
         </Routes>
         <Toaster />
       </div>
-
     </>
   );
 }

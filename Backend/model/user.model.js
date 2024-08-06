@@ -14,6 +14,41 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    avatar: {
+        type: String,
+
+    },
+    lastname: {
+        type: String,
+
+    },
+    about: {
+        type: String,
+
+    },
+    country: {
+        type: String,
+
+    },
+    streetaddress: {
+        type: String,
+
+    },
+    city: {
+        type: String,
+
+    },
+    state: {
+        type: String,
+
+    },
+    postalcode: {
+        type: String,
+
+    },
+
+
+
 });
 const User = mongoose.model("User", userSchema);
 export default User;

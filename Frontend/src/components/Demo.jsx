@@ -7,7 +7,7 @@ function Demo() {
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get("http://localhost:4001/book");
+        const res = await axios.get("http://localhost:1001/book");
         console.log(res.data);
         setBook(res.data);
       } catch (error) {
@@ -41,11 +41,13 @@ function Demo() {
           <span className="loading loading-ring loading-lg"></span>
         </div>
       ) : (
-        <div className=" max-w-screen-2xl container mt-10 md:px-20 px-4 py-16" >
-
+        <div className=" max-w-screen-2xl container mt-10 md:px-20 px-4 py-16">
           <div className="mt-18 items-start  justify-center my-10 text-center">
             <p className="mt-12">
-              Our website offers a wide selection of books across various genres, ensuring you find your desired titles easily. Enjoy seamless browsing, secure purchases, and prompt delivery right to your doorstep.
+              Our website offers a wide selection of books across various
+              genres, ensuring you find your desired titles easily. Enjoy
+              seamless browsing, secure purchases, and prompt delivery right to
+              your doorstep.
             </p>
             <h1 className="text-xl  md:text-2xl">
               <div className="flex justify-center my-10">
@@ -73,27 +75,20 @@ function Demo() {
                     />
                   </svg>
                 </label>
-
               </div>
             </h1>
           </div>
           <div>
-            <div className="text-2xl ">
-              Popular Book
-            </div>
+            <div className="text-2xl ">Popular Book</div>
 
             <div className="mt-4 grid grid-cols-1 md:grid-cols-4">
               {book.map((item) => (
                 <Cards key={item.id} item={item} />
               ))}
             </div>
-
           </div>
-
-
         </div>
-      )
-      }
+      )}
     </>
   );
 }

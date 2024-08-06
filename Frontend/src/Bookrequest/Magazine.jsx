@@ -11,7 +11,7 @@ function Magazine() {
   };
 
   return (
-    <div className="max-w-60 mx-auto my-40 justify-center  p-4 bg-red-300 dark:bg-slate-900 dark:text-white md:max-w-96">
+    <div className="max-w-60 mx-auto my-10 justify-center  p-4 bg-red-300 dark:bg-slate-900 dark:text-white md:max-w-96">
       <h2 className="text-lg text-black justify-center flex  font-bold mb-4">
         Magazine
       </h2>
