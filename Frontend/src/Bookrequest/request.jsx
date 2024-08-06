@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Article from "../Bookrequest/Article";
-import Magazine from "../Bookrequest/Magazine";
-import Bookreq from "../Bookrequest/Bookreq";
+import Article from "./Article";
+import Magazine from "./Magazine";
+import Bookreq from "./Bookreq";
 
 const MainPage = () => {
   const [activeComponent, setActiveComponent] = useState("Bookreq");

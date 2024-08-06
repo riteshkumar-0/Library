@@ -40,7 +40,7 @@ function BookDetail() {
 
   return (
     <div className="book-detail container mx-auto  px-4 py-16">
-        {book ? <Reader book={book} /> : <div>No book details available.</div>}
+      {book ? <Reader book={book} /> : <div>No book details available.</div>}
     </div>
   );
 }

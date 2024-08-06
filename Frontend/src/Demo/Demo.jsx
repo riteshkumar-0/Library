@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Demo from "../components/Demo";
-import Footer from "../components/Footer";
+import Navbar from "../Components/Navbar";
+import Demo from "../Components/Demo";
+import Footer from "../Components/Footer";
 function Demos() {
   return (
     <>

@@ -1,0 +1,36 @@
+
+
+
+.slick-prev,
+.slick-next {
+  @apply absolute top-1/2 transform -translate-y-1/2 w-10 h-10 bg-slate-700 text-black rounded-full flex items-center justify-center z-10;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  @apply text-xl; 
+}
+
+
+.slick-prev {
+  @apply -left-10; 
+}
+
+.slick-next {
+  @apply -right-10; 
+}
+
+
+.slick-prev::before {
+  content: '←'; 
+}
+
+.slick-next::before {
+  content: '→'; 
+}
+
+
+.slick-prev:hover,
+.slick-next:hover {
+  @apply bg-lime-600;
+}

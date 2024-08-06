@@ -1,331 +1,92 @@
-import { useState } from 'react';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import User from "../../public/user.jpg";
+import { useAuth } from "../Context/AuthProvider";
+import Editprofile from "./Editprofile";
 
-function ProfileForm() {
-  return (
-    <div className="border-b border-gray-900/10 pb-12">
-      <h2 className="text-2xl font-semibold leading-7 text-black">Profile</h2>
-      <p className="mt-1 text-sm leading-6 text-black">
-        This information will be displayed publicly so be careful what you share.
-      </p>
+const Profile = () => {
+  const [authUser] = useAuth();
+  const [isEditing, setIsEditing] = useState(false);
 
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-4">
-          <label htmlFor="username" className="block text-sm font-medium leading-6 text-black">
-            Username
-          </label>
-          <div className="mt-2">
-            <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-              <input
-                id="username"
-                name="username"
-                type="text"
-                placeholder="user1@gmail.com"
-                autoComplete="username"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-black placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="col-span-full">
-          <label htmlFor="about" className="block text-sm font-medium leading-6 text-black">
-            About
-          </label>
-          <div className="mt-2">
-            <textarea
-              id="about"
-              name="about"
-              rows={3}
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              defaultValue={''}
-            />
-          </div>
-          <p className="mt-3 text-sm leading-6 text-black">Write a few sentences about yourself.</p>
-        </div>
-
-        <div className="col-span-full">
-          <label htmlFor="photo" className="block text-sm font-medium leading-6 text-black">
-            Photo
-          </label>
-          <div className="mt-2 flex items-center gap-x-3">
-            <UserCircleIcon aria-hidden="true" className="h-12 w-12 text-gray-300" />
-            <button
-              type="button"
-              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-black shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            >
-              Change
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PersonalInfoForm() {
-  return (
-    <div className="border-b border-gray-900/10 pb-12">
-      <h2 className="text-2xl font-semibold leading-7 text-black">Personal Information</h2>
-      <p className="mt-1 text-sm leading-6 text-black">Use a permanent address where you can receive mail.</p>
-
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div className="sm:col-span-3">
-          <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-black">
-            First name
-          </label>
-          <div className="mt-2">
-            <input
-              id="first-name"
-              name="first-name"
-              type="text"
-              autoComplete="given-name"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-3">
-          <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-black">
-            Last name
-          </label>
-          <div className="mt-2">
-            <input
-              id="last-name"
-              name="last-name"
-              type="text"
-              autoComplete="family-name"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-4">
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-black">
-            Email address
-          </label>
-          <div className="mt-2">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-3">
-          <label htmlFor="country" className="block text-sm font-medium leading-6 text-black">
-            Country
-          </label>
-          <div className="mt-2">
-            <select
-              id="country"
-              name="country"
-              autoComplete="country-name"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-            >
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="col-span-full">
-          <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-black">
-            Street address
-          </label>
-          <div className="mt-2">
-            <input
-              id="street-address"
-              name="street-address"
-              type="text"
-              autoComplete="street-address"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-2 sm:col-start-1">
-          <label htmlFor="city" className="block text-sm font-medium leading-6 text-black">
-            City
-          </label>
-          <div className="mt-2">
-            <input
-              id="city"
-              name="city"
-              type="text"
-              autoComplete="address-level2"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-2">
-          <label htmlFor="region" className="block text-sm font-medium leading-6 text-black">
-            State / Province
-          </label>
-          <div className="mt-2">
-            <input
-              id="region"
-              name="region"
-              type="text"
-              autoComplete="address-level1"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-2">
-          <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-black">
-            ZIP / Postal code
-          </label>
-          <div className="mt-2">
-            <input
-              id="postal-code"
-              name="postal-code"
-              type="text"
-              autoComplete="postal-code"
-              className="block w-full rounded-md border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NotificationForm() {
-  return (
-    <div className="border-b border-gray-900/10 pb-12">
-      <h2 className="text-2xl font-semibold leading-7 text-black">Notifications</h2>
-      <p className="mt-1 text-sm leading-6 text-black">
-        We'll always let you know about important changes, but you pick what else you want to hear about.
-      </p>
-
-      <div className="mt-10 space-y-10">
-        <fieldset>
-          <legend className="text-sm font-semibold leading-6 text-black">Push Notifications</legend>
-          <p className="mt-1 text-sm leading-6 text-black">These are delivered via SMS to your mobile phone.</p>
-          <div className="mt-6 space-y-6">
-            <div className="flex items-center gap-x-3">
-              <input
-                id="push-everything"
-                name="push-notifications"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-              />
-              <label htmlFor="push-everything" className="block text-sm font-medium leading-6 text-black">
-                Everything
-              </label>
-            </div>
-            <div className="flex items-center gap-x-3">
-              <input
-                id="push-email"
-                name="push-notifications"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-              />
-              <label htmlFor="push-email" className="block text-sm font-medium leading-6 text-black">
-                Same as email
-              </label>
-            </div>
-            <div className="flex items-center gap-x-3">
-              <input
-                id="push-nothing"
-                name="push-notifications"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-              />
-              <label htmlFor="push-nothing" className="block text-sm font-medium leading-6 text-black">
-                No push notifications
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    </div>
-  );
-}
-
-export default function User() {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const steps = [
-    { name: 'Profile', component: <ProfileForm /> },
-    { name: 'Personal Information', component: <PersonalInfoForm /> },
-    { name: 'Notifications', component: <NotificationForm /> },
-  ];
-
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
+  const toggleEditMode = () => {
+    setIsEditing(!isEditing);
   };
 
   return (
-    <div className="dark:bg-slate-300 flex justify-center">
-      <form className="space-y-12 m-auto mb-20 mt-20 w-4/6 md:w-3/4 lg:w-2/3 xl:w-1/2 dark:bg-slate-400 dark:text-black flex">
-        <NavLink
-          to="/"
-          className="btn btn-lg btn-circle btn-ghost text-red-600 absolute right-2 top-2"
-        >
-          <h1 className="text-4xl"> X </h1>
-        </NavLink>
-
-        <div className="flex flex-col w-1/4">
-          <ul className="steps steps-vertical">
-            {steps.map((step, index) => (
-              <li
-                key={index}
-                className={`step ${index <= currentStep ? 'step-primary' : ''}`}
-              >
-                <span className="hidden md:inline">{step.name}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col w-3/4 pl-6">
-          {steps[currentStep].component}
-
-          <div className="mt-6 flex items-center mb-28 text-2xl justify-end gap-x-6 md:flex-wrap lg:flex-nowrap">
-            <button
-              type="button"
-              className="text-sm font-semibold leading-6 text-black md:mr-4 lg:mr-0"
-              onClick={handlePrevious}
-              disabled={currentStep === 0}
-            >
-              Previous
+    <>
+      <Navbar />
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="w-full max-w-xs lg:max-w-2xl mt-36 flex-col justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6 m-4">
+          <div className="flex justify-end">
+            <button onClick={toggleEditMode} className="p-2">
+              {isEditing ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-8 h-8 opacity-90 cursor-pointer"
+                >
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-8H6v8zM19 6h-4.5l-.71-.71c-.18-.18-.44-.29-.71-.29H10.93c-.27 0-.53.11-.71.29L9.5 6H5v2h14V6z" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  fill="currentColor"
+                  className="w-8 h-8 opacity-90 cursor-pointer"
+                >
+                  <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160L0 416c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-96c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 96c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 64z" />
+                </svg>
+              )}
             </button>
-            {currentStep < steps.length - 1 ? (
-              <button
-                type="button"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 md:ml-4 lg:ml-0"
-                onClick={handleNext}
-              >
-                Next
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 md:ml-4 lg:ml-0"
-              >
-                Save
-              </button>
-            )}
           </div>
+          {isEditing ? (
+            <Editprofile toggleEditMode={toggleEditMode} />
+          ) : (
+            <div className="flex justify-center flex-col lg:flex-row lg:space-x-4">
+              <img
+                className="w-16 h-16 lg:h-44 lg:w-44 rounded-full flex justify-center object-cover mx-auto my-auto lg:mx-0"
+                src={authUser.avatar || User}
+                alt="User avatar"
+              />
+              <div className="text-center lg:text-left mt-4 lg:mt-0">
+                <h1 className="text-3xl flex justify-center font-medium underline text-gray-800 dark:text-white">
+                  Profile
+                </h1>
+                <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+                  {authUser.fullname}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300">
+                  <h3 className="text-lg font-medium underline text-gray-800 dark:text-white">
+                    UserId:
+                  </h3>
+                  {authUser.email}
+                </p>
+                <div className="mt-4">
+                  <h3 className="text-lg font-medium underline text-gray-800 dark:text-white">
+                    About
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {authUser.about}
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <h3 className="text-lg font-medium underline text-gray-800 dark:text-white">
+                    Location
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {`${authUser.city}, ${authUser.state}, ${authUser.country}`}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </form>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
-}
+};
+
+export default Profile;

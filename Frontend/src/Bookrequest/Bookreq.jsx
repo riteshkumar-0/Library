@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const BookForm = () => {
   const [bookName, setBookName] = useState("");
   const [authorName, setAuthorName] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState(null);
+  const [message, setMessage] = useState("");
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -19,27 +21,43 @@ const BookForm = () => {
     formData.append("category", category);
     formData.append("image", image);
 
-    await axios
-      .post("http://localhost:1001/bookrequest", formData)
-      .then((response) => {
-        console.log(response.data);
-        alert("Book added successfully!");
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Error adding book!");
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:1001/request/bookrequest",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        setBookName("");
+        setAuthorName("");
+        setCategory("");
+        setImage(null);
+        toast.success("We will notify you as soon as possible");
+      } else {
+        throw new Error("Failed to submit book request");
+      }
+    } catch (error) {
+      console.error("Error in requesting book:", error);
+     
+      toast.error("pls req again");
+    }
   };
 
   return (
-    <div className="max-w-56 mx-auto my-10  p-4  bg-orange-300 dark:bg-slate-900 dark:text-white rounded shadow-md md:max-w-md">
+    <div className="max-w-56 mx-auto my-10 p-4 bg-orange-300 dark:bg-slate-900 dark:text-white rounded shadow-md md:max-w-md">
       <h2 className="text-lg font-bold text-black flex justify-center mb-4">
         Book{" "}
       </h2>
-      <form className=" w-auto " onSubmit={handleSubmit}>
+      {message && <div className="mb-4 text-center text-white">{message}</div>}
+      <form className="w-auto" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-4">
           <div className="w-full md:w-1/2 px-3 mb-4 md:mb-0">
-            <label className=" uppercase tracking-wide flex text-gray-700 text-xs font-bold mb-2">
+            <label className="uppercase tracking-wide flex text-gray-700 text-xs font-bold mb-2">
               Book Name
             </label>
             <input

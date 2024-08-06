@@ -1,25 +1,45 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Banner from "../components/Banner";
-import Newsletter from "../components/newsletter";
-import Footer from "../components/Footer";
-import Contact from "../contact/Contact";
-import Popularbook from "../components/Popularbook";
+import React, { useState, useEffect } from "react";
+import Navbar from "../Components/Navbar";
+import Banner from "../Components/Banner";
+import Newsletter from "../Components/newsletter";
+import Footer from "../Components/Footer";
+import Contact from "../Contact/Contact";
+import Popularbook from "../Popularbook/Popularbook";
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-ring loading-xs"></span>
+        <span className="loading loading-ring loading-sm"></span>
+        <span className="loading loading-ring loading-md"></span>
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <>
       <Navbar />
       <Banner />
-      <Popularbook />
       <Newsletter />
+      <Popularbook />
+
       <Contact />
       <Footer />
-
       <div className="fixed  p-4 z-1 transform lg:translate-x-0 lg:w-auto lg:left-auto lg:top-3/4 lg:-translate-y-1/2 hide-on-small-devices ">
-        <ul className="  text-xl cursor-pointer flex flex-col items-center space-y-6">
+        <ul className="  text-xl cursor-pointer flex flex-col items-center space-y-3">
           <li className="hover:text-red-600 gap-3 transition-transform transform hover:scale-110 duration-300">
-            <a href="#">
+            <a href="https://www.instagram.com/ritesh_00_kumar/">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -30,7 +50,7 @@ function Home() {
               </svg>
             </a>
           </li>
-          <li className="hover:text-red-600 gap-3 transition-transform transform hover:scale-110 duration-300">
+          <li className="hover:text-blue-700 gap-3 transition-transform transform hover:scale-110 duration-300">
             <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +62,8 @@ function Home() {
               </svg>
             </a>
           </li>
-          <li className="hover:text-red-600 gap-3 transition-transform transform hover:scale-110 duration-300">
-            <a href="#">
+          <li className="hover:text-black gap-3 transition-transform transform hover:scale-110 duration-300">
+            <a href="https://x.com/Ritesh_00_">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -54,8 +74,8 @@ function Home() {
               </svg>
             </a>
           </li>
-          <li className="hover:text-red-600 gap-3 transition-transform transform hover:scale-110 duration-300">
-            <a href="#">
+          <li className="hover:text-yellow-500 gap-3 transition-transform transform hover:scale-110 duration-300">
+            <a href="https://discord.com/channels/@me">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

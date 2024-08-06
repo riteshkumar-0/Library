@@ -29,6 +29,7 @@ function Signup() {
         console.log(res.data);
         if (res.data) {
           toast.success("Signup Successfully");
+
           navigate(from, { replace: true });
         }
         localStorage.setItem("Users", JSON.stringify(res.data.user));
@@ -43,9 +44,9 @@ function Signup() {
 
   return (
     <>
-      <div className="flex h-screen items-center justify-center sm:items-center ">
-        <div className="w-auto">
-          <div className="modal-box  bg-slate-400 m-auto">
+      <div className="flex h-screen m-auto items-center justify-center sm:items-center   dark:text-slate-50 dark:bg-slate-400">
+        <div className="w-3/4 h-auto">
+          <div className="modal-box w-11/12  h-2/4 mx-auto bg-slate-50 dark:bg-slate-400 dark:text-slate-50">
             <form onSubmit={handleSubmit(onSubmit)} method="dialog">
               <Link
                 to="/"
@@ -54,25 +55,27 @@ function Signup() {
                 ✕
               </Link>
 
-              <div className=" m-auto mt-4 w-2/4 md:order-2 md:w-2/4 md:m-auto  md: h-1/25 items-center">
+              <div className="flex justify-center items-center mt-4">
                 <img
                   src={logo}
-                  className="md:w-[200px] md:h-[100px] "
+                  className="w-[150px] h-[75px] md:w-[200px] md:h-[100px]"
                   alt="Logo"
                 />
               </div>
-              <div className="m-auto mt-5 md:order-1 w-full  py-1 items-center text-red-950 font-bold text-lg">
+              <div className="text-center text-red-950 font-bold text-lg mt-4">
                 Create a New Account
               </div>
-              <div className="flex mt-2 ">
-                <div className="space-y-4 text-orange-950 flex-grow">
-                  <div>
+
+              <div className="flex flex-col md:flex-row mt-2">
+                <div className="w-full md:w-1/2 space-y-4">
+              
+                  <div className="mt-4 text-black dark:text-slate-50 space-y-2">
                     <span>Name</span>
                     <br />
                     <input
                       type="text"
                       placeholder="Enter your fullname"
-                      className="w-60 px-3 py-1 border caret-orange-400 rounded-md outline-none"
+                      className="w-full px-3 py-2 border rounded-md  bg-slate-50 dark:text-slate-50 dark:bg-slate-400  caret-orange-400 outline-none"
                       {...register("fullname", { required: true })}
                     />
                     <br />
@@ -82,13 +85,15 @@ function Signup() {
                       </span>
                     )}
                   </div>
-                  <div>
+
+                 
+                  <div className="mt-4 text-black dark:text-slate-50 space-y-2">
                     <span>Email</span>
                     <br />
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="w-60 px-3 py-1 border caret-orange-400 rounded-md outline-none"
+                      className="w-full px-3 py-2 border rounded-md  bg-slate-50 dark:text-slate-50 dark:bg-slate-400  caret-orange-400 outline-none"
                       {...register("email", { required: true })}
                     />
                     <br />
@@ -98,13 +103,15 @@ function Signup() {
                       </span>
                     )}
                   </div>
-                  <div>
+
+               
+                  <div className="mt-4 text-black dark:text-slate-50 space-y-2">
                     <span>Password</span>
                     <br />
                     <input
                       type="password"
                       placeholder="Enter your password"
-                      className="w-60 px-3 py-1 border caret-orange-400 rounded-md outline-none"
+                      className="w-full px-3 py-2 border rounded-md bg-slate-50 dark:bg-slate-400 caret-orange-400 outline-none"
                       {...register("password", { required: true })}
                     />
                     <br />
@@ -115,19 +122,22 @@ function Signup() {
                     )}
                   </div>
                 </div>
-                <div className="ml-4 py-4  m-auto">
+
+                <div className="hidden md:flex md:w-1/2 h-1/2 mt-16 justify-end items-center">
                   <img
                     src={signup}
-                    className="w-[250px] h-[180px]  hidden md:block "
+                    className="w-[200px] h-[180px] md:ml-6"
                     alt="signup"
                   />
                 </div>
               </div>
-              <div className="flex justify-around  px-4 mt-4 md:flex flex-col">
+
+              {/* Button */}
+              <div className="flex justify-around mt-6 flex-col">
                 <button className="bg-red-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
                   Signup
                 </button>
-                <p className=" m-auto text-xl text-red-950">
+                <p className="text-center text-red-950 mt-4">
                   Have an account?{" "}
                   <button
                     className="underline text-blue-500 cursor-pointer"
