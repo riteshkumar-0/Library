@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-// Book Request Schema and Model
+
 const bookrequestSchema = new mongoose.Schema({
   bookName: String,
   authorName: String,
@@ -10,7 +10,7 @@ const bookrequestSchema = new mongoose.Schema({
 
 const Bookrequest = mongoose.model('Bookrequest', bookrequestSchema);
 
-// Article Schema and Model
+
 const articleSchema = new mongoose.Schema({
   title: String,
   publisher: String,
@@ -19,7 +19,6 @@ const articleSchema = new mongoose.Schema({
 
 const Article = mongoose.model('Article', articleSchema);
 
-// Magazine Schema and Model
 const magazineSchema = new mongoose.Schema({
   magazinename: String,
   publishercompany: String,

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { Link } from "react-router-dom";
 
 const List = () => {
   const [lists, setLists] = useState([]);
@@ -38,6 +39,17 @@ const List = () => {
       console.error("Error creating list", error);
     }
   };
+
+  const deleteList = async (listId) => {
+    try {
+      await axios.delete(`http://localhost:1001/lists/${listId}`);
+      // After deleting the list, fetch the updated list of lists
+      fetchLists();
+    } catch (error) {
+      console.error("Error deleting list", error);
+    }
+  };
+
 
   const addBookToList = async () => {
     try {
@@ -94,9 +106,8 @@ const List = () => {
 
         {/* Left side box */}
         <div
-          className={`fixed inset-0 mt-20 lg:mt-0 z-40 lg:static lg:translate-x-0 transform ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out lg:w-1/4 bg-gray-200 dark:bg-gray-600 dark:text-white p-4`}
+          className={`fixed inset-0 mt-20 lg:mt-0 z-40 lg:static lg:translate-x-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+            } transition-transform duration-300 ease-in-out lg:w-1/4 bg-gray-200 dark:bg-gray-600 dark:text-white p-4`}
         >
           <div className="flex items-center justify-between">
             <h1 className="text-base lg:text-3xl font-medium underline dark:text-white text-gray-800">
@@ -127,17 +138,29 @@ const List = () => {
           </div>
 
           <ul className="mt-5">
-            {lists.map((list) => (
-              <li key={list._id} className="mt-2 text-xl">
-                <span
-                  onClick={() => fetchBooksFromList(list._id, list.name)}
-                  className="cursor-pointer"
-                >
-                  {list.name}
-                </span>
-              </li>
-            ))}
-          </ul>
+  {lists.map((list) => (
+    <li key={list._id} className="mt-2 text-xl flex justify-between items-center p-3 border border-gray-300 rounded-md">
+      <span
+        onClick={() => fetchBooksFromList(list._id, list.name)}
+        className="cursor-pointer"
+      >
+        
+        {list.name}
+      </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-6 h-6 cursor-pointer text-red-500 hover:text-red-700"
+        onClick={() => deleteList(list._id)}
+      >
+        <path d="M3 6h18v2H3zm3 4h12v10H6zm2-8h8v2H8zM9 8h6v2H9zm2 2h2v8h-2z" />
+        
+        
+      </svg>
+    </li>
+  ))}
+</ul>
         </div>
 
         {/* Right side area */}
@@ -151,7 +174,10 @@ const List = () => {
                 key={book._id}
                 className="flex justify-between items-center lg:mx-40 mt-2 p-4 border border-gray-100  rounded-md dark:bg-gray-900 bg-white shadow-sm"
               >
-                <span className="mx-6">{book.bookname}</span>
+                <span className="mx-6">
+                <Link to={`/book/${book._id}`}> {book.bookname}</Link>
+                
+                  </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

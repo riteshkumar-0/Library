@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 import User from "../model/user.model.js";
 import bcryptjs from "bcryptjs";
 
-// Signup Function
+
 export const signup = async (req, res) => {
     try {
         const { fullname, email, password } = req.body;
 
-        // Validate required fields
+       
         if (!fullname || !email || !password) {
             return res.status(400).json({ message: "All fields are required" });
         }
@@ -39,7 +39,7 @@ export const signup = async (req, res) => {
     }
 };
 
-// Login Function
+
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
     }
 };
 
-// Save Profile Function
+
 
 export async function updateUser(req, res) {
     try {

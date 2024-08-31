@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Context/AuthProvider";
 
 function Cards({ item }) {
   const [lists, setLists] = useState([]);
   const [selectedListId, setSelectedListId] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [authUser] = useAuth();
 
   useEffect(() => {
     fetchLists();
@@ -19,6 +21,15 @@ function Cards({ item }) {
       console.error("Error fetching lists", error);
     }
   };
+
+
+const handlePlusClick = () => {
+  if (!authUser) {
+    alert("Please log in to add books to a list.");
+    return;
+  }
+  setShowModal(true);
+};
 
   const addBookToList = async () => {
     if (!selectedListId) {
@@ -57,8 +68,9 @@ function Cards({ item }) {
             <div className="badge badge-outline mt-2">Rs.{item.price}</div>
             <div
               className="rounded-md hover:bg-orange-800 hover:text-white cursor-pointer"
-              onClick={() => setShowModal(true)}
+              onClick={handlePlusClick}  
             >
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -75,7 +87,7 @@ function Cards({ item }) {
         </div>
       </div>
 
-      {/* Modal for list selection */}
+      
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-80 relative">
@@ -112,3 +124,4 @@ function Cards({ item }) {
 }
 
 export default Cards;
+

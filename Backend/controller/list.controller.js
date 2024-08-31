@@ -1,6 +1,6 @@
 import List from "../model/list.model.js"
 
-// Function to create a new list
+
 const createList = async (req, res) => {
     const { name } = req.body;
     try {
@@ -12,7 +12,23 @@ const createList = async (req, res) => {
     }
 };
 
-// Function to add a book to a list
+
+const deleteList = async (req, res) => {
+    const { listId } = req.params;  
+
+    try {
+        const deletedList = await List.findByIdAndDelete(listId); 
+        if (!deletedList) {  
+            return res.status(404).json({ message: "List not found" });  
+        }
+
+        res.status(200).json({ message: "List deleted successfully" });  
+    } catch (error) {
+        res.status(500).json({ error: error.message });  
+    }
+};
+
+
 const addBookToList = async (req, res) => {
     const { listId } = req.params;
     const { bookId } = req.body;
@@ -26,7 +42,7 @@ const addBookToList = async (req, res) => {
     }
 };
 
-// Function to get books from a list
+
 const getBooksFromList = async (req, res) => {
     const { listId } = req.params;
     try {
@@ -37,7 +53,7 @@ const getBooksFromList = async (req, res) => {
     }
 };
 
-// Function to delete a book from a list
+
 const deleteBookFromList = async (req, res) => {
     const { listId, bookId } = req.params;
     try {
@@ -64,5 +80,6 @@ export {
     addBookToList,
     getBooksFromList,
     deleteBookFromList,
-    fetchLists
+    fetchLists,
+    deleteList
 };

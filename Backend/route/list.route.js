@@ -4,7 +4,8 @@ import {
     addBookToList,
     getBooksFromList,
     deleteBookFromList,
-    fetchLists
+    fetchLists,
+    deleteList
 } from "../controller/list.controller.js"
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.post("/", createList);
 router.post("/:listId/book", addBookToList);
 router.get("/:listId/books", getBooksFromList);
 router.delete("/:listId/book/:bookId", deleteBookFromList);
+router.delete('/:listId', deleteList);
 
 export default router;
