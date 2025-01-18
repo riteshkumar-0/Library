@@ -20,7 +20,7 @@ export default function Contact() {
             <h1 className="text-5xl font-bold text-teal-500 mb-4 underline">
               Contact Us
             </h1>
-            <p className="text-lg text-blue-400">
+            <p className="text-lg  text-blue-400">
               We're here to help you with any question or support you need.
               Reach out to us and we'll respond as soon as possible.
             </p>

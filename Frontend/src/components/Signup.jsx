@@ -6,10 +6,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import signup from "../../public/signup.jpeg";
 import logo from "../../public/logo.png";
-
+import { useAuth } from "../Context/AuthProvider"
 function Signup() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const from = location.state?.from?.pathname || "/";
   const {
     register,
@@ -29,10 +30,14 @@ function Signup() {
         console.log(res.data);
         if (res.data) {
           toast.success("Signup Successfully");
-
           navigate(from, { replace: true });
+          setTimeout(() => {
+            window.location.reload();
+            localStorage.setItem("Users", JSON.stringify(res.data.user));
+            localStorage.setItem("loginTimestamp", Date.now());
+          },);
         }
-        localStorage.setItem("Users", JSON.stringify(res.data.user));
+       
       })
       .catch((err) => {
         if (err.response) {
